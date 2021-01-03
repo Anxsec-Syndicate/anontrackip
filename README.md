@@ -6,3 +6,5 @@
 * `cd anontrackip`
 
 #### > Run : `bash anontrackip`
+#### © Anxsec-Syndicate
+
