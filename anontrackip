@@ -1,0 +1,177 @@
+#!/bin/bash
+
+python lock.py
+
+banner() {
+
+clear
+printf "\e[0m\n"
+printf "\e[1;31m     root@anxsecsyndicate~#\e[1;31m exploit the world \e[0m\n"
+printf "\e[0m\n"
+
+}
+
+menu() {
+printf "\e[0m\n"
+printf "\e[0m\e[1;31m  [\e[0m\e[1;37m01\e[0m\e[1;31m]\e[0m\e[1;97m My IP\e[0m\n"
+printf "\e[0m\e[1;31m  [\e[0m\e[1;37m02\e[0m\e[1;31m]\e[0m\e[1;97m Track Ip\e[0m\n"
+printf "\e[0m\e[1;31m  [\e[0m\e[1;37m00\e[0m\e[1;31m]\e[0m\e[1;31m Exit\e[0m\n"
+printf "\e[0m\n"
+read -p $'  \e[1;31m[\e[0m\e[1;37m~\e[0m\e[1;31m]\e[0m\e[1;97m Pilih Opsi \e[0m\e[1;97m: \e[0m\e[1;93m\en' option
+
+if [[ $option == 1 || $option == 01 ]]; then
+myipaddr
+elif [[ $option == 2 || $option == 02 ]]; then
+useripaddr
+elif [[ $option == 0 || $option == 00 ]]; then
+sleep 1
+printf "\e[0m\n"
+printf "\e[0m\n"
+exit 1
+
+else
+printf " \e[1;91m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\e[1;97m Opsi Salah \e[1;97m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\n"
+sleep 1
+banner
+menu
+fi
+
+}
+myipaddr() {
+
+myipaddripapico=$(curl -s "https://ipapi.co//json" -L)
+myipaddripapicom=$(curl -s "http://ip-api.com/json/" -L)
+myip=$(echo $myipaddripapico | grep -Po '(?<="ip":)[^,]*' | tr -d '[]"')
+mycity=$(echo $myipaddripapico | grep -Po '(?<="city":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+myregion=$(echo $myipaddripapico | grep -Po '(?<="region":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mycountry=$(echo $myipaddripapico | grep -Po '(?<="country_name":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mylat=$(echo $myipaddripapicom | grep -Po '(?<="lat":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mylon=$(echo $myipaddripapicom | grep -Po '(?<="lon":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mytime=$(echo $myipaddripapicom | grep -Po '(?<="timezone":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mypostal=$(echo $myipaddripapicom | grep -Po '(?<="zip":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+myisp=$(echo $myipaddripapico | grep -Po '(?<="org":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+myasn=$(echo $myipaddripapico | grep -Po '(?<="asn":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mycountrycode=$(echo $myipaddripapico | grep -Po '(?<="country_code":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mycurrency=$(echo $myipaddripapico | grep -Po '(?<="currency":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mylanguage=$(echo $myipaddripapico | grep -Po '(?<="languages":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+mycalling=$(echo $myipaddripapico | grep -Po '(?<="country_calling_code":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+
+banner
+printf "\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  Ip Address    \e[0m\e[1;92m:\e[0m\e[1;97m   $myip\e[0m\n"
+printf "  \e[0m\e[1;31m  City          \e[0m\e[1;92m:\e[0m\e[1;97m   $mycity\e[0m\n"
+printf "  \e[0m\e[1;31m  Region        \e[0m\e[1;92m:\e[0m\e[1;97m   $myregion\e[0m\n"
+printf "  \e[0m\e[1;31m  Country       \e[0m\e[1;92m:\e[0m\e[1;97m   $mycountry\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  Latitude      \e[0m\e[1;92m:\e[0m\e[1;97m    $mylat\e[0m\n"
+printf "  \e[0m\e[1;31m  Longitude     \e[0m\e[1;92m:\e[0m\e[1;97m    $mylon\e[0m\n"
+printf "  \e[0m\e[1;31m  Time Zone     \e[0m\e[1;92m:\e[0m\e[1;97m    $mytime\e[0m\n"
+printf "  \e[0m\e[1;31m  Postal Code   \e[0m\e[1;92m:\e[0m\e[1;97m    $mypostal\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  ISP           \e[0m\e[1;92m:\e[0m\e[1;97m   $myisp\e[0m\n"
+printf "  \e[0m\e[1;31m  ASN           \e[0m\e[1;92m:\e[0m\e[1;97m   $myasn\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  Country Code  \e[0m\e[1;92m:\e[0m\e[1;97m   $mycountrycode\e[0m\n"
+printf "  \e[0m\e[1;31m  Currency      \e[0m\e[1;92m:\e[0m\e[1;97m   $mycurrency\e[0m\n"
+printf "  \e[0m\e[1;31m  Languages     \e[0m\e[1;92m:\e[0m\e[1;97m   $mylanguage\e[0m\n"
+printf "  \e[0m\e[1;31m  Calling Code  \e[0m\e[1;92m:\e[0m\e[1;97m   $mycalling\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  GOOGLE Maps   \e[0m\e[1;92m:\e[0m\e[1;92m  https://maps.google.com/?q=$mylat,$mylon\e[0m\n"
+sleep 5
+printf "\e[0m\n"
+printf "  \e[0m\e[1;91m[\e[0m\e[1;97m01\e[0m\e[1;91m]\e[0m\e[1;97m Kembali Ke Menu\e[0m\n"
+printf "  \e[0m\e[1;91m[\e[0m\e[1;97m02\e[0m\e[1;91m]\e[0m\e[1;97m Exit\e[0m\n"
+printf "\e[0m\n"
+read -p $'  \e[1;31m>>\e[0m\e[1;96m  \en' mainorexit1
+
+if [[ $mainorexit1 == 1 || $mainorexit1 == 01 ]]; then
+banner
+menu
+elif [[ $mainorexit1 == 2 || $mainorexit1 == 02 ]]; then
+printf "\e[0m\n"
+printf "\e[0m\n"
+exit 1
+
+else
+printf " \e[1;91m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\e[1;97m Opsi Salah \e[1;97m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\n"
+sleep 1
+banner
+menu
+fi
+
+}
+
+useripaddr() {
+
+banner
+printf "\e[0m\n"
+printf "\e[0m\n"
+printf "\e[0m\n"
+read -p $'  \e[1;31m[\e[0m\e[1;37m~\e[0m\e[1;31m]\e[0m\e[1;97m Masukan IP Address \e[0m\e[1;97m: \e[0m\e[1;93m\en' useripaddress
+
+ipaddripapico=$(curl -s "https://ipapi.co/$useripaddress/json" -L)
+ipaddripapicom=$(curl -s "http://ip-api.com/json/$useripaddress" -L)
+userip=$(echo $ipaddripapico | grep -Po '(?<="ip":)[^,]*' | tr -d '[]"')
+usercity=$(echo $ipaddripapico | grep -Po '(?<="city":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+useregion=$(echo $ipaddripapico | grep -Po '(?<="region":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+usercountry=$(echo $ipaddripapico | grep -Po '(?<="country_name":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+userlat=$(echo $ipaddripapicom | grep -Po '(?<="lat":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+userlon=$(echo $ipaddripapicom | grep -Po '(?<="lon":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+usertime=$(echo $ipaddripapicom | grep -Po '(?<="timezone":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+userpostal=$(echo $ipaddripapicom | grep -Po '(?<="zip":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+userisp=$(echo $ipaddripapico | grep -Po '(?<="org":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+userasn=$(echo $ipaddripapico | grep -Po '(?<="asn":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+usercountrycode=$(echo $ipaddripapico | grep -Po '(?<="country_code":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+usercurrency=$(echo $ipaddripapico | grep -Po '(?<="currency":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+userlanguage=$(echo $ipaddripapico | grep -Po '(?<="languages":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+usercalling=$(echo $ipaddripapico | grep -Po '(?<="country_calling_code":)[^},]*' | tr -d '[]"' | sed 's/\(<[^>]*>\|<\/>\|{1|}\)//g')
+
+banner
+printf "\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  Ip Address    \e[0m\e[1;92m:\e[0m\e[1;97m   $myip\e[0m\n"
+printf "  \e[0m\e[1;31m  City          \e[0m\e[1;92m:\e[0m\e[1;97m   $mycity\e[0m\n"
+printf "  \e[0m\e[1;31m  Region        \e[0m\e[1;92m:\e[0m\e[1;97m   $myregion\e[0m\n"
+printf "  \e[0m\e[1;31m  Country       \e[0m\e[1;92m:\e[0m\e[1;97m   $mycountry\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  Latitude      \e[0m\e[1;92m:\e[0m\e[1;97m    $mylat\e[0m\n"
+printf "  \e[0m\e[1;31m  Longitude     \e[0m\e[1;92m:\e[0m\e[1;97m    $mylon\e[0m\n"
+printf "  \e[0m\e[1;31m  Time Zone     \e[0m\e[1;92m:\e[0m\e[1;97m    $mytime\e[0m\n"
+printf "  \e[0m\e[1;31m  Postal Code   \e[0m\e[1;92m:\e[0m\e[1;97m    $mypostal\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  ISP           \e[0m\e[1;92m:\e[0m\e[1;97m   $myisp\e[0m\n"
+printf "  \e[0m\e[1;31m  ASN           \e[0m\e[1;92m:\e[0m\e[1;97m   $myasn\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  Country Code  \e[0m\e[1;92m:\e[0m\e[1;97m   $mycountrycode\e[0m\n"
+printf "  \e[0m\e[1;31m  Currency      \e[0m\e[1;92m:\e[0m\e[1;97m   $mycurrency\e[0m\n"
+printf "  \e[0m\e[1;31m  Languages     \e[0m\e[1;92m:\e[0m\e[1;97m   $mylanguage\e[0m\n"
+printf "  \e[0m\e[1;31m  Calling Code  \e[0m\e[1;92m:\e[0m\e[1;97m   $mycalling\e[0m\n"
+printf "\e[0m\n"
+printf "  \e[0m\e[1;31m  GOOGLE Maps   \e[0m\e[1;92m:\e[0m\e[1;92m  https://maps.google.com/?q=$mylat,$mylon\e[0m\n"
+sleep 5
+printf "\e[0m\n"
+printf "  \e[0m\e[1;91m[\e[0m\e[1;97m01\e[0m\e[1;91m]\e[0m\e[1;97m Kembali Ke Menu\e[0m\n"
+printf "  \e[0m\e[1;91m[\e[0m\e[1;97m02\e[0m\e[1;91m]\e[0m\e[1;97m Exit\e[0m\n"
+printf "\e[0m\n"
+read -p $'  \e[1;31m>>\e[0m\e[1;96m  \en' mainorexit2
+
+if [[ $mainorexit2 == 1 || $mainorexit2 == 01 ]]; then
+banner
+menu
+elif [[ $mainorexit2 == 2 || $mainorexit2 == 02 ]]; then
+printf "\e[0m\n"
+printf "\e[0m\n",
+exit 1
+
+else
+printf " \e[1;91m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\e[1;97m Pilih Yang Bener \e[1;97m[\e[0m\e[1;97m!\e[0m\e[1;91m]\e[0m\n"
+sleep 1
+banner
+menu
+fi
+
+}
+
+banner
+menu
